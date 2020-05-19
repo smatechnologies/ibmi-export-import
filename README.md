@@ -1,19 +1,19 @@
-# Project Name
-Project description
+# IBMi Export-Import 
+The OpCon IBM i Agent Data Export/Import process allows the client to Export LSAM master records groups from a test machine that will be FTPed to one to many production machines based on the configuration of the OpCon Machine Group and imported on that machine using the LSAM Import process.
+
+# Prerequisites
+* OpCon IBMi Agent 18.1
+
+# Instructions
+Please refer to the pdf for detailed instructions.
 
 # Disclaimer
 No Support and No Warranty are provided by SMA Technologies for this project and related material. The use of this project's files is on your own risk.
 
 SMA Technologies assumes no liability for damage caused by the usage of any of the files offered here via this Github repository.
 
-# Prerequisites
-
-
-# Instructions
-
-
 # License
-Copyright 2019 SMA Technologies
+Copyright 2020 SMA Technologies
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
