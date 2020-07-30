@@ -219,14 +219,14 @@ Schedules and can be imported per the instruction in the Enterprise
 Manager User Guide Opening Import Export section. 
 
 File Name: 
-> SMADDI_20200508144159_IBM LSAM Export From Test to Production.xml
+> OpConSchedule-19v1v0-SMADDI.xml
 
 **WS Connector Template**
 Web Services Connector exported
 templated is provided to assist in the configuration. 
 
 File Name:
-> Web_Services_Connector_20200508144159_IBM LSAM Export From Test to Production.json
+> WebServices-20v0v3-template.json
 
 []{#_Toc40790157 .anchor}
 
