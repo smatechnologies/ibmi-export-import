@@ -5,7 +5,7 @@ The OpCon IBM i Agent Data Export/Import process enables the client to define an
 * OpCon IBM i Agent 18.1
 
 # Instructions
-Please refer to [this](User%20Instructions%20-%20OpCon%20Agent%20for%20IBM%20i%20-%20Automating%20Export-Import%20using%20Self%20Service.md) for detailed instructions.
+Please refer to [this](UserGuide-Automate-Exp-Imp.md) for detailed instructions.
 
 # Disclaimer
 No Support and No Warranty are provided by SMA Technologies for this project and related material. The use of this project's files is on your own risk.
