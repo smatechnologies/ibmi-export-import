@@ -29,7 +29,9 @@ SMA may update this document to use the Solution Manager (SM) user interface exa
 
 [OpCon Properties](#opcon-properties)
 
-- IBMEXI_SMALOG: [SMALOG library name](#ibmexi_smalog)
+- IBMEXI_SMALOG: [SMALOG export library name](#ibmexi_smalog)
+
+- IBMIMP_SMALOG: [SMALOG import library name](#ibmimp_smalog)
 
 - IBMEXI_SAVF: [IBM Export/Import save file name](#ibmexi_savf)
 
