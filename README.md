@@ -2,7 +2,7 @@
 The OpCon IBM i Agent Data Export/Import process enables the client to define an automatic process that exports LSAM master records groups from a test machine, then transfers them to one or many production machines based on the configuration of the OpCon Machine Group, and finally imports them on each machine using the LSAM Import process.
 
 # Prerequisites
-* OpCon IBM i Agent 18.1
+* OpCon IBM i Agent 21.1
 
 # Instructions
 Please refer to [this](UserGuide-Automate-Exp-Imp.md) for detailed instructions.
