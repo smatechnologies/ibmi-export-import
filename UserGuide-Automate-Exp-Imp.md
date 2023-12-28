@@ -29,10 +29,6 @@ SMA may update this document to use the Solution Manager (SM) user interface exa
 
 [OpCon Properties](#opcon-properties)
 
-- IBMEXI_JOBD: [IBM Export/Import Job Description](#ibmexi_jobd)
-
-- IBMEXI_JOBDLIB: [IBM Export/Import Job Description Library](#ibmexi_jobdlib)
-
 - IBMEXI_SMALOG: [SMALOG library name](#ibmexi_smalog)
 
 - IBMEXI_SAVF: [IBM Export/Import save file name](#ibmexi_savf)
