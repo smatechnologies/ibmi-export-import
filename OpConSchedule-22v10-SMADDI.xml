@@ -1,49 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <smaddi>
     <msg>
-        <msgtype>new_token</msgtype>
-        <tokeninfo>
-            <tokendesc>IBMEXI_SAVF</tokendesc>
-            <tokendoc>IBM LSAM Export/Import SAVF name(20)</tokendoc>
-            <tokenval>SMAX000012</tokenval>
-        </tokeninfo>
-    </msg>
-    <msg>
-        <msgtype>new_token</msgtype>
-        <tokeninfo>
-            <tokendesc>WS_PATH</tokendesc>
-            <tokendoc>Location where Webservices Connector 20.0.3 is installed</tokendoc>
-            <tokenval>E:\Program Files\OpConxps\SMAWebServicesConnector-win</tokenval>
-        </tokeninfo>
-    </msg>
-    <msg>
-        <msgtype>new_token</msgtype>
-        <tokeninfo>
-            <tokendesc>IBMEXI_SAMID</tokendesc>
-            <tokendoc>URL name of the SAM server hosting the OpCon API access.</tokendoc>
-            <tokenval>DEVSAMTEST</tokenval>
-        </tokeninfo>
-    </msg>
-    <msg>
-        <msgtype>new_token</msgtype>
-        <tokeninfo>
-            <tokendesc>IBMEXI_API_USER</tokendesc>
-            <tokendoc>OpCon API User name to obtain RESTful access token</tokendoc>
-            <tokenval>IBMIEVENT</tokenval>
-        </tokeninfo>
-    </msg>
-    <msg>
-        <msgtype>new_token</msgtype>
-        <tokeninfo>
-            <tokendesc>IBMEXI_API_PASSWORD</tokendesc>
-            <tokendoc>OpCon API user ID password encrypted for access via RESTful connector</tokendoc>
-            <tokenval><SmaEncrypt>3zXskIjsWA4DiGObwDe3eQ==</SmaEncrypt></tokenval>
-        </tokeninfo>
-    </msg>
-    <msg>
         <msgtype>new_schedule</msgtype>
         <skdinfo>
-            <skdname>IBM LSAM Export From Test to Production</skdname>
+            <skdname>IBM LSAM Export from Test to Production</skdname>
             <skdstart>00:00</skdstart>
             <calusemaster>True</calusemaster>
             <skdwkdays>7</skdwkdays>
@@ -59,7 +19,7 @@
     <msg>
         <msgtype>new_master</msgtype>
         <schedule>
-            <skdname>IBM LSAM Export From Test to Production</skdname>
+            <skdname>IBM LSAM Export from Test to Production</skdname>
             <job>
                 <jname>5 Sec Delay for event processing</jname>
                 <platform>Windows</platform>
@@ -74,7 +34,7 @@
                     <dtype>Working</dtype>
                     <aobn>O</aobn>
                     <frq_stc_estmethod>Calculated</frq_stc_estmethod>
-                    <frq_predicted_start>10:39</frq_predicted_start>
+                    <frq_predicted_start>16:23</frq_predicted_start>
                 </frq>
                 <jobdata>
                     <wuid>Use Service Account</wuid>
@@ -87,7 +47,7 @@
             <job>
                 <jname>CPYTOMSGIN - IBMEXI FETCH SAVF NAME</jname>
                 <platform>IBM i</platform>
-                <pmname>IBM_Test</pmname>
+                <pmname>IBMILSAM9</pmname>
                 <frq>
                     <frqname>Unisys-L4200</frqname>
                     <stoff>00:00</stoff>
@@ -98,7 +58,7 @@
                     <dtype>Working</dtype>
                     <aobn>O</aobn>
                     <frq_stc_estmethod>Calculated</frq_stc_estmethod>
-                    <frq_predicted_start>10:37</frq_predicted_start>
+                    <frq_predicted_start>16:23</frq_predicted_start>
                 </frq>
                 <jobdata>
                     <job_type>Batch Job</job_type>
@@ -107,8 +67,8 @@
                     <job_date>*JOBD</job_date>
                     <curr_lib>*</curr_lib>
                     <init_lib>*JOBD</init_lib>
-                    <job_desc_name>[[IBMEXI_JOBD]]</job_desc_name>
-                    <job_desc_lib>[[IBMEXI_JOBDLIB]]</job_desc_lib>
+                    <job_desc_name>SMALSAJ00</job_desc_name>
+                    <job_desc_lib>SMADTA</job_desc_lib>
                     <batchq_name>*JOBD</batchq_name>
                     <batchq_lib>*LIBL</batchq_lib>
                     <outputq_name>*JOBD</outputq_name>
@@ -120,13 +80,13 @@
                     <inq_msg>*JOBD</inq_msg>
                     <joblogs_keep_occur>0</joblogs_keep_occur>
                     <joblogs_keep_days>0</joblogs_keep_days>
-                    <call_script>CPYTOMSGIN CPYMSGIN('$PROPERTY:SET,IBMEXI_SAVF,{EXISAVF}')</call_script>
+                    <call_script>CPYTOMSGIN CPYMSGIN('$PROPERTY:ADD,SI.IBMEXI_SAVF.[[$SCHEDULE DATE]].[[$SCHEDULE NAME]],{EXISAVF}')</call_script>
                 </jobdata>
             </job>
             <job>
                 <jname>CRTIMPSAVF - Create save file on Production Machines</jname>
                 <platform>IBM i</platform>
-                <mgrp>IBMi_Prod</mgrp>
+                <mgrp>TSTFQDNMG</mgrp>
                 <mgrpeach>True</mgrpeach>
                 <frq>
                     <frqname>Unisys-L4200</frqname>
@@ -138,7 +98,7 @@
                     <dtype>Working</dtype>
                     <aobn>O</aobn>
                     <frq_stc_estmethod>Calculated</frq_stc_estmethod>
-                    <frq_predicted_start>10:23</frq_predicted_start>
+                    <frq_predicted_start>16:24</frq_predicted_start>
                 </frq>
                 <jobdata>
                     <job_type>Batch Job</job_type>
@@ -147,10 +107,10 @@
                     <job_date>*JOBD</job_date>
                     <curr_lib>*</curr_lib>
                     <init_lib>*JOBD</init_lib>
-                    <job_desc_name>[[IBMEXI_JOBD]]</job_desc_name>
-                    <job_desc_lib>[[IBMEXI_JOBDLIB]]</job_desc_lib>
-                    <batchq_name>*JOBD</batchq_name>
-                    <batchq_lib>*LIBL</batchq_lib>
+                    <job_desc_name>*</job_desc_name>
+                    <job_desc_lib>*</job_desc_lib>
+                    <batchq_name>*</batchq_name>
+                    <batchq_lib>*</batchq_lib>
                     <outputq_name>*JOBD</outputq_name>
                     <outputq_lib>*LIBL</outputq_lib>
                     <log_lvl>*JOBD</log_lvl>
@@ -160,13 +120,13 @@
                     <inq_msg>*JOBD</inq_msg>
                     <joblogs_keep_occur>0</joblogs_keep_occur>
                     <joblogs_keep_days>0</joblogs_keep_days>
-                    <call_script>CRTSAVF [[IBMEXI_SMALOG]]/[[IBMEXI_SAVF]]</call_script>
+                    <call_script>CRTSAVF [[SI.IBMIMP_SMALOG]]/[[SI.IBMEXI_SAVF]]</call_script>
                 </jobdata>
             </job>
             <job>
                 <jname>FTP Transfer from Test to Production</jname>
                 <platform>IBM i</platform>
-                <mgrp>IBMi_Prod</mgrp>
+                <mgrp>TSTFQDNMG</mgrp>
                 <mgrpeach>True</mgrpeach>
                 <frq>
                     <frqname>Unisys-L4200</frqname>
@@ -178,7 +138,7 @@
                     <dtype>Working</dtype>
                     <aobn>O</aobn>
                     <frq_stc_estmethod>Calculated</frq_stc_estmethod>
-                    <frq_predicted_start>15:15</frq_predicted_start>
+                    <frq_predicted_start>16:24</frq_predicted_start>
                 </frq>
                 <jobdata>
                     <job_type>FTP</job_type>
@@ -187,10 +147,10 @@
                     <job_date>*JOBD</job_date>
                     <curr_lib>*</curr_lib>
                     <init_lib>*JOBD</init_lib>
-                    <job_desc_name>[[IBMEXI_JOBD]]</job_desc_name>
-                    <job_desc_lib>[[IBMEXI_JOBDLIB]]</job_desc_lib>
-                    <batchq_name>*JOBD</batchq_name>
-                    <batchq_lib>*LIBL</batchq_lib>
+                    <job_desc_name>*</job_desc_name>
+                    <job_desc_lib>*</job_desc_lib>
+                    <batchq_name>*</batchq_name>
+                    <batchq_lib>*</batchq_lib>
                     <outputq_name>*JOBD</outputq_name>
                     <outputq_lib>*LIBL</outputq_lib>
                     <log_lvl>*JOBD</log_lvl>
@@ -200,40 +160,20 @@
                     <inq_msg>*JOBD</inq_msg>
                     <joblogs_keep_occur>0</joblogs_keep_occur>
                     <joblogs_keep_days>0</joblogs_keep_days>
-                    <ftp_remtsys>[[SI.IBMEXISRCIP]]</ftp_remtsys>
+                    <ftp_remtsys>[[MI.FQDN.[[SI.IBMEXI_SRCMACH]]]]</ftp_remtsys>
                     <ftp_act>GET</ftp_act>
                     <ftp_tfr>BIN</ftp_tfr>
-                    <ftp_user>CLEWIS</ftp_user>
-                    <ftp_lclfn>[[IBMEXI_SAVF]]</ftp_lclfn>
-                    <ftp_lcldir>[[IBMEXI_SMALOG]]</ftp_lcldir>
+                    <ftp_user>SYSSAV</ftp_user>
+                    <ftp_lclfn>[[SI.IBMEXI_SAVF]]</ftp_lclfn>
+                    <ftp_lcldir>[[SI.IBMIMP_SMALOG]]</ftp_lcldir>
                     <ftp_rmtfn>*LCLFILNAM</ftp_rmtfn>
-                    <ftp_rmtdir>[[IBMEXI_SMALOG]]</ftp_rmtdir>
+                    <ftp_rmtdir>[[SI.IBMEXI_SMALOG]]</ftp_rmtdir>
                 </jobdata>
             </job>
             <job>
                 <jname>Initialization Job</jname>
-                <platform>Null Job</platform>
-                <frq>
-                    <frqname>Unisys-L4200</frqname>
-                    <stoff>00:00</stoff>
-                    <star>A</star>
-                    <bldst>Release</bldst>
-                    <fgrp>All Weeks</fgrp>
-                    <dow>YYYYYYY</dow>
-                    <dtype>Working</dtype>
-                    <aobn>O</aobn>
-                    <frq_stc_estmethod>Calculated</frq_stc_estmethod>
-                    <frq_predicted_start>09:50</frq_predicted_start>
-                </frq>
-                <ppevt>
-                    <ppefinst>Finished OK</ppefinst>
-                    <ppedets>$PROPERTY:SET,IBMEXI_SAVF,INZ</ppedets>
-                </ppevt>
-            </job>
-            <job>
-                <jname>LSA_EXPDTA - Export LSAM Batch from Test Machine</jname>
                 <platform>IBM i</platform>
-                <pmname>IBM_Test</pmname>
+                <pmname>IBMILSAM9</pmname>
                 <frq>
                     <frqname>Unisys-L4200</frqname>
                     <stoff>00:00</stoff>
@@ -244,11 +184,19 @@
                     <dtype>Working</dtype>
                     <aobn>O</aobn>
                     <frq_stc_estmethod>Calculated</frq_stc_estmethod>
-                    <frq_predicted_start>10:35</frq_predicted_start>
+                    <frq_predicted_start>15:24</frq_predicted_start>
                 </frq>
                 <ppevt>
                     <ppefinst>Finished OK</ppefinst>
-                    <ppedets>$PROPERTY:ADD,SI.IBMEXI_SRC_MACHINE,[[$MACHINE NAME]]</ppedets>
+                    <ppedets>$PROPERTY:ADD,SI.IBMEXI_SAVF,INZ</ppedets>
+                </ppevt>
+                <ppevt>
+                    <ppefinst>Finished OK</ppefinst>
+                    <ppedets>$PROPERTY:ADD,SI.IBMEXI_SMALOG,SMALOG</ppedets>
+                </ppevt>
+                <ppevt>
+                    <ppefinst>Finished OK</ppefinst>
+                    <ppedets>$PROPERTY:ADD,SI.IBMIMP_SMALOG,SMALOG</ppedets>
                 </ppevt>
                 <jobdata>
                     <job_type>Batch Job</job_type>
@@ -257,8 +205,8 @@
                     <job_date>*JOBD</job_date>
                     <curr_lib>*</curr_lib>
                     <init_lib>*JOBD</init_lib>
-                    <job_desc_name>[[IBMEXI_JOBD]]</job_desc_name>
-                    <job_desc_lib>[[IBMEXI_JOBDLIB]]</job_desc_lib>
+                    <job_desc_name>SMALSAJ00</job_desc_name>
+                    <job_desc_lib>SMADTA</job_desc_lib>
                     <batchq_name>*JOBD</batchq_name>
                     <batchq_lib>*LIBL</batchq_lib>
                     <outputq_name>*JOBD</outputq_name>
@@ -270,17 +218,68 @@
                     <inq_msg>*JOBD</inq_msg>
                     <joblogs_keep_occur>0</joblogs_keep_occur>
                     <joblogs_keep_days>0</joblogs_keep_days>
-                    <call_script>LSAEXPDTA GROUP({EXIGROUP}) BATCH([[SI.IBMEXIBATCH]]) REPORT(1)</call_script>
+                    <call_script>SNDMSG MSG('SMA OpCon Agent Export-Import reports start of automated schedule: "[[$SCHEDULE NAME]]"  for schedule date: [[$SCHEDULE DATE ISO]]') TOUSR(*SYSOPR)                                             </call_script>
                     <ibmi_agent_var_info>
-                        <ibmi_agent_var>EXIBATCH</ibmi_agent_var>
+                        <ibmi_agent_var>SI.EXIBATCH</ibmi_agent_var>
                         <ibmi_agent_var_val>[[SI.IBMEXIBATCH]]</ibmi_agent_var_val>
+                    </ibmi_agent_var_info>
+                </jobdata>
+            </job>
+            <job>
+                <jname>LSA_EXPDTA - Export LSAM Batch from Test Machine</jname>
+                <platform>IBM i</platform>
+                <pmname>IBMILSAM9</pmname>
+                <frq>
+                    <frqname>Unisys-L4200</frqname>
+                    <stoff>00:00</stoff>
+                    <star>A</star>
+                    <bldst>Release</bldst>
+                    <fgrp>All Weeks</fgrp>
+                    <dow>YYYYYYY</dow>
+                    <dtype>Working</dtype>
+                    <aobn>O</aobn>
+                    <frq_stc_estmethod>Calculated</frq_stc_estmethod>
+                    <frq_predicted_start>15:24</frq_predicted_start>
+                </frq>
+                <ppevt>
+                    <ppefinst>Finished OK</ppefinst>
+                    <ppedets>$PROPERTY:ADD,SI.IBMEXI_SRCMACH,[[$MACHINE NAME]]</ppedets>
+                </ppevt>
+                <jobdata>
+                    <job_type>Batch Job</job_type>
+                    <i5_userid>SYSSAV</i5_userid>
+                    <job_q_pri>*</job_q_pri>
+                    <job_date>*SCHEDULE DATE</job_date>
+                    <curr_lib>*</curr_lib>
+                    <init_lib>*JOBD</init_lib>
+                    <job_desc_name>SMALSAJ00</job_desc_name>
+                    <job_desc_lib>SMADTA</job_desc_lib>
+                    <batchq_name>*JOBD</batchq_name>
+                    <batchq_lib>*</batchq_lib>
+                    <outputq_name>*JOBD</outputq_name>
+                    <outputq_lib>*</outputq_lib>
+                    <log_lvl>*JOBD</log_lvl>
+                    <sev_lvl>*JOBD</sev_lvl>
+                    <txt_opt>*JOBD</txt_opt>
+                    <cl_log>*JOBD</cl_log>
+                    <inq_msg>*JOBD</inq_msg>
+                    <joblogs_keep_occur>0</joblogs_keep_occur>
+                    <joblogs_keep_days>0</joblogs_keep_days>
+                    <call_script>LSAEXPDTA GROUP({SI.EXIGROUP}) BATCH({SI.EXIBATCH}) REPORT(1)</call_script>
+                    <ibmi_agent_var_info>
+                        <ibmi_agent_var>SI.EXIBATCH</ibmi_agent_var>
+                        <ibmi_agent_var_val>[[SI.IBMEXIBATCH]]</ibmi_agent_var_val>
+                    </ibmi_agent_var_info>
+                    <ibmi_agent_var_info>
+                        <ibmi_agent_var>SI.EXIGROUP</ibmi_agent_var>
+                        <ibmi_agent_var_val>{EXIGROUP}</ibmi_agent_var_val>
                     </ibmi_agent_var_info>
                 </jobdata>
             </job>
             <job>
                 <jname>LSA_IMPGET - IBM IMP GETSAVF</jname>
                 <platform>IBM i</platform>
-                <mgrp>IBMi_Prod</mgrp>
+                <mgrp>TSTFQDNMG</mgrp>
                 <mgrpeach>True</mgrpeach>
                 <multi_inst_job>True</multi_inst_job>
                 <frq>
@@ -293,7 +292,7 @@
                     <dtype>Working</dtype>
                     <aobn>O</aobn>
                     <frq_stc_estmethod>Calculated</frq_stc_estmethod>
-                    <frq_predicted_start>10:58</frq_predicted_start>
+                    <frq_predicted_start>16:34</frq_predicted_start>
                 </frq>
                 <jobdata>
                     <job_type>Batch Job</job_type>
@@ -302,10 +301,10 @@
                     <job_date>*JOBD</job_date>
                     <curr_lib>*</curr_lib>
                     <init_lib>*JOBD</init_lib>
-                    <job_desc_name>[[IBMEXI_JOBD]]</job_desc_name>
-                    <job_desc_lib>[[IBMEXI_JOBDLIB]]</job_desc_lib>
-                    <batchq_name>*JOBD</batchq_name>
-                    <batchq_lib>*LIBL</batchq_lib>
+                    <job_desc_name>*</job_desc_name>
+                    <job_desc_lib>*</job_desc_lib>
+                    <batchq_name>*</batchq_name>
+                    <batchq_lib>*</batchq_lib>
                     <outputq_name>*JOBD</outputq_name>
                     <outputq_lib>*LIBL</outputq_lib>
                     <log_lvl>*JOBD</log_lvl>
@@ -315,38 +314,7 @@
                     <inq_msg>*JOBD</inq_msg>
                     <joblogs_keep_occur>0</joblogs_keep_occur>
                     <joblogs_keep_days>0</joblogs_keep_days>
-                    <call_script>LSAIMPGET SAVFIL([[IBMEXI_SAVF]]) REPORT(1)</call_script>
-                </jobdata>
-            </job>
-            <job>
-                <jname>Web Services Connector</jname>
-                <platform>Windows</platform>
-                <pmname>DEVSAMTEST</pmname>
-                <jobsubtype>Webservices</jobsubtype>
-                <frq>
-                    <frqname>Unisys-L4200</frqname>
-                    <stoff>00:00</stoff>
-                    <star>A</star>
-                    <bldst>Release</bldst>
-                    <fgrp>All Weeks</fgrp>
-                    <dow>YYYYYYY</dow>
-                    <dtype>Working</dtype>
-                    <aobn>O</aobn>
-                    <frq_stc_estmethod>Calculated</frq_stc_estmethod>
-                    <frq_predicted_start>09:15</frq_predicted_start>
-                </frq>
-                <afc>
-                    <afc_operator>Not Equal To</afc_operator>
-                    <afc_value>200</afc_value>
-                    <afc_result>Fail</afc_result>
-                </afc>
-                <jobdata>
-                    <wuid>Use Service Account</wuid>
-                    <job_priority>Normal</job_priority>
-                    <cmd_line>"[[WS_PATH]]\SMAWSConnector.exe" "{'templateid':'OpConAPI-GETIBMEXISRCIP','steps':[{'function':'POST','url':'https://[[IBMEXI_SAMID]]:9010/api/tokens','request':{'headers':[],'body':'{\'id\':null,\'user\':{\'id\':-1,\'loginName\':\'@User\',\'password\':\'@Password\'},\'tokenType\':{\'id\':null,\'type\':\'User\'}}','fileName':null},'response':{'ignoreResult':false,'stepCompletionCode':200,'responseDataCheck':null,'fileName':null,'variables':[{'name':'@Token','value':'$.id'}]}},{'function':'GET','url':'https://[[IBMEXI_SAMID]]:9010/api/machines?name=@Machine&extendedProperties=true','request':{'headers':[{'attribute':'Authorization','value':'Token @Token'}],'body':null,'fileName':null},'response':{'ignoreResult':false,'stepCompletionCode':200,'responseDataCheck':null,'fileName':null,'variables':[{'name':'@PropertyValue','value':'$[0].tcpIpAddress'}]}}],'variables':[{'name':'@User','value':'[[IBMEXI_API_USER]]'},{'name':'@Password','value':'[[IBMEXI_API_PASSWORD]]'},{'name':'@Machine','value':'[[SI.IBMEXI_SRC_MACHINE]]'}],'properties':[{'name':'SI.IBMEXISRCIP.[[$SCHEDULE DATE]].[[$SCHEDULE NAME]]','value':'@PropertyValue'}]}"</cmd_line>
-                    <working_dir>"[[WS_PATH]]\"</working_dir>
-                    <fail_1_cond>NE</fail_1_cond>
-                    <fail_1_val>0</fail_1_val>
+                    <call_script>LSAIMPGET SAVFIL([[SI.IBMEXI_SAVF]]) REPORT(1)</call_script>
                 </jobdata>
             </job>
         </schedule>
@@ -354,11 +322,11 @@
     <msg>
         <msgtype>add_dependency</msgtype>
         <schedule>
-            <skdname>IBM LSAM Export From Test to Production</skdname>
+            <skdname>IBM LSAM Export from Test to Production</skdname>
             <job>
                 <jname>5 Sec Delay for event processing</jname>
                 <jpre>
-                    <dskdname>IBM LSAM Export From Test to Production</dskdname>
+                    <dskdname>IBM LSAM Export from Test to Production</dskdname>
                     <djname>CPYTOMSGIN - IBMEXI FETCH SAVF NAME</djname>
                     <dptype>Requires</dptype>
                     <iexit>N</iexit>
@@ -370,12 +338,12 @@
     <msg>
         <msgtype>add_dependency</msgtype>
         <schedule>
-            <skdname>IBM LSAM Export From Test to Production</skdname>
+            <skdname>IBM LSAM Export from Test to Production</skdname>
             <job>
                 <jname>CPYTOMSGIN - IBMEXI FETCH SAVF NAME</jname>
                 <jpre>
-                    <dskdname>IBM LSAM Export From Test to Production</dskdname>
-                    <djname>Web Services Connector</djname>
+                    <dskdname>IBM LSAM Export from Test to Production</dskdname>
+                    <djname>LSA_EXPDTA - Export LSAM Batch from Test Machine</djname>
                     <dptype>Requires</dptype>
                     <iexit>N</iexit>
                     <onfailure>N</onfailure>
@@ -386,11 +354,11 @@
     <msg>
         <msgtype>add_dependency</msgtype>
         <schedule>
-            <skdname>IBM LSAM Export From Test to Production</skdname>
+            <skdname>IBM LSAM Export from Test to Production</skdname>
             <job>
                 <jname>CRTIMPSAVF - Create save file on Production Machines</jname>
                 <jpre>
-                    <dskdname>IBM LSAM Export From Test to Production</dskdname>
+                    <dskdname>IBM LSAM Export from Test to Production</dskdname>
                     <djname>5 Sec Delay for event processing</djname>
                     <dptype>Requires</dptype>
                     <iexit>N</iexit>
@@ -402,11 +370,11 @@
     <msg>
         <msgtype>add_dependency</msgtype>
         <schedule>
-            <skdname>IBM LSAM Export From Test to Production</skdname>
+            <skdname>IBM LSAM Export from Test to Production</skdname>
             <job>
                 <jname>FTP Transfer from Test to Production</jname>
                 <jpre>
-                    <dskdname>IBM LSAM Export From Test to Production</dskdname>
+                    <dskdname>IBM LSAM Export from Test to Production</dskdname>
                     <djname>CRTIMPSAVF - Create save file on Production Machines</djname>
                     <dptype>Requires</dptype>
                     <iexit>N</iexit>
@@ -418,11 +386,11 @@
     <msg>
         <msgtype>add_dependency</msgtype>
         <schedule>
-            <skdname>IBM LSAM Export From Test to Production</skdname>
+            <skdname>IBM LSAM Export from Test to Production</skdname>
             <job>
                 <jname>LSA_EXPDTA - Export LSAM Batch from Test Machine</jname>
                 <jpre>
-                    <dskdname>IBM LSAM Export From Test to Production</dskdname>
+                    <dskdname>IBM LSAM Export from Test to Production</dskdname>
                     <djname>Initialization Job</djname>
                     <dptype>Requires</dptype>
                     <iexit>N</iexit>
@@ -434,28 +402,12 @@
     <msg>
         <msgtype>add_dependency</msgtype>
         <schedule>
-            <skdname>IBM LSAM Export From Test to Production</skdname>
+            <skdname>IBM LSAM Export from Test to Production</skdname>
             <job>
                 <jname>LSA_IMPGET - IBM IMP GETSAVF</jname>
                 <jpre>
-                    <dskdname>IBM LSAM Export From Test to Production</dskdname>
+                    <dskdname>IBM LSAM Export from Test to Production</dskdname>
                     <djname>FTP Transfer from Test to Production</djname>
-                    <dptype>Requires</dptype>
-                    <iexit>N</iexit>
-                    <onfailure>N</onfailure>
-                </jpre>
-            </job>
-        </schedule>
-    </msg>
-    <msg>
-        <msgtype>add_dependency</msgtype>
-        <schedule>
-            <skdname>IBM LSAM Export From Test to Production</skdname>
-            <job>
-                <jname>Web Services Connector</jname>
-                <jpre>
-                    <dskdname>IBM LSAM Export From Test to Production</dskdname>
-                    <djname>LSA_EXPDTA - Export LSAM Batch from Test Machine</djname>
                     <dptype>Requires</dptype>
                     <iexit>N</iexit>
                     <onfailure>N</onfailure>
@@ -466,7 +418,7 @@
     <msg>
         <msgtype>add_documentation</msgtype>
         <schedule>
-            <skdname>IBM LSAM Export From Test to Production</skdname>
+            <skdname>IBM LSAM Export from Test to Production</skdname>
             <job>
                 <documentation>
                     <doc>This a schedule is designed to be run from self service. It requires the LSAM export Batch Name in an OpCon Property.</doc>
@@ -477,7 +429,7 @@
     <msg>
         <msgtype>add_documentation</msgtype>
         <schedule>
-            <skdname>IBM LSAM Export From Test to Production</skdname>
+            <skdname>IBM LSAM Export from Test to Production</skdname>
             <job>
                 <jname>5 Sec Delay for event processing</jname>
                 <documentation>
@@ -489,7 +441,7 @@
     <msg>
         <msgtype>add_documentation</msgtype>
         <schedule>
-            <skdname>IBM LSAM Export From Test to Production</skdname>
+            <skdname>IBM LSAM Export from Test to Production</skdname>
             <job>
                 <jname>CPYTOMSGIN - IBMEXI FETCH SAVF NAME</jname>
                 <documentation>
@@ -501,7 +453,7 @@
     <msg>
         <msgtype>add_documentation</msgtype>
         <schedule>
-            <skdname>IBM LSAM Export From Test to Production</skdname>
+            <skdname>IBM LSAM Export from Test to Production</skdname>
             <job>
                 <jname>LSA_EXPDTA - Export LSAM Batch from Test Machine</jname>
                 <documentation>
@@ -513,23 +465,11 @@
     <msg>
         <msgtype>add_documentation</msgtype>
         <schedule>
-            <skdname>IBM LSAM Export From Test to Production</skdname>
+            <skdname>IBM LSAM Export from Test to Production</skdname>
             <job>
                 <jname>LSA_IMPGET - IBM IMP GETSAVF</jname>
                 <documentation>
                     <doc>Find and preprocess the import savf.</doc>
-                </documentation>
-            </job>
-        </schedule>
-    </msg>
-    <msg>
-        <msgtype>add_documentation</msgtype>
-        <schedule>
-            <skdname>IBM LSAM Export From Test to Production</skdname>
-            <job>
-                <jname>Web Services Connector</jname>
-                <documentation>
-                    <doc>Imported example developed by Bruce Jernell, small adaptations by George Loose 2020-04-17.</doc>
                 </documentation>
             </job>
         </schedule>
