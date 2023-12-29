@@ -671,9 +671,11 @@ The CRTIMPSAVF - Create save file on Production Machines job creates an empty sa
 
 -   **Job Description Name**: SMALSAJ00
     - An alternative job description can be used as long as the four LSAM libraries are included in the initial library list.
+    - To enable a user-selected Job Description, select asterisk (\*) which refers to the LSAM Default Paramters.  The actual Job Description name can be set in each/any target Machine by using the LSAM Parameters maintenance function which is option 7 on the main LSAM menu.
 
 -   **Job Description Library**: SMADTA
     - An alternative library can be named, depending on where the Job Description object is stored.
+    - If the Job Description is set to asterisk (\*) then the Job Description Library name should also be set to asterisk so that the LSAM Parameters default value for this library will match the specified Job Description.
 
 -   **Call**: CRTSAVF \[\[SI.IBMIMP_SMALOG\]\]/\[\[SI.IBMEXI_SAVF\]\]
 
@@ -713,22 +715,13 @@ The FTP Transfer from Test to Production job transfers the save file from the Te
 
 -   **User ID**: Select your configured User ID from the drop-down selection.
 
--   **Job Description Name**: 
-    - \*
-        - The asterisk is suggested.  It means "LSAM default" which refers to the Job Description named in the LSAM Parameters (accessed from the LSAM main menu, option 7, in the bottom portion of the first display page).
+-   **Job Description Name**: SMALSAJ00
+    - An alternative job description can be used as long as the four LSAM libraries are included in the initial library list.
+    - To enable a user-selected Job Description, select asterisk (\*) which refers to the LSAM Default Paramters.  The actual Job Description name can be set in each/any target Machine by using the LSAM Parameters maintenance function which is option 7 on the main LSAM menu.
 
-            **NOTE:** When using the asterisk, the LSAM Parameters must name either the job description SMALSAJ00 or another job description that must include the four LSAM libraries in its Initial Library List.
-        
-    - SMALSAJ00
-        - An alternative job description can be used as long as the four LSAM libraries are included in the initial library list.
-
--   **Job Description Library**: 
-        - \*
-        - The asterisk is suggested.  It means "LSAM default" which refers to the Job Description Library named in the LSAM Parameters (accessed from the LSAM main menu, option 7, in the bottom portion of the first display page).
-
-            **NOTE:** When using the asterisk, the LSAM Parameters must name either library SMADTA or the library where the alternate job description is located.
-    - SMADTA
-        - An alternative library can be named, depending on where the Job Description object is stored.
+-   **Job Description Library**: SMADTA
+    - An alternative library can be named, depending on where the Job Description object is stored.
+    - If the Job Description is set to asterisk (\*) then the Job Description Library name should also be set to asterisk so that the LSAM Parameters default value for this library will match the specified Job Description.
 
 **Call Information/Transfer Information Tab/ftp options**
 
@@ -799,22 +792,13 @@ The LSA_IMPGET job executes the IBM i LSAM command LSAIMPGET to import the save 
 
 -   **User ID**: Select your configured User ID from the drop-down selection.
 
--   **Job Description Name**: 
-    - \*
-        - The asterisk is suggested.  It means "LSAM default" which refers to the Job Description named in the LSAM Parameters (accessed from the LSAM main menu, option 7, in the bottom portion of the first display page).
+-   **Job Description Name**: SMALSAJ00
+    - An alternative job description can be used as long as the four LSAM libraries are included in the initial library list.
+    - To enable a user-selected Job Description, select asterisk (\*) which refers to the LSAM Default Paramters.  The actual Job Description name can be set in each/any target Machine by using the LSAM Parameters maintenance function which is option 7 on the main LSAM menu.
 
-            **NOTE:** When using the asterisk, the LSAM Parameters must name either the job description SMALSAJ00 or another job description that must include the four LSAM libraries in its Initial Library List.
-        
-    - SMALSAJ00
-        - An alternative job description can be used as long as the four LSAM libraries are included in the initial library list.
-
--   **Job Description Library**: 
-    - \*
-        - The asterisk is suggested.  It means "LSAM default" which refers to the Job Description Library named in the LSAM Parameters (accessed from the LSAM main menu, option 7, in the bottom portion of the first display page).
-
-            **NOTE:** When using the asterisk, the LSAM Parameters must name either library SMADTA or the library where the alternate job description is located.
-    - SMADTA
-        - An alternative library can be named, depending on where the Job Description object is stored.
+-   **Job Description Library**: SMADTA
+    - An alternative library can be named, depending on where the Job Description object is stored.
+    - If the Job Description is set to asterisk (\*) then the Job Description Library name should also be set to asterisk so that the LSAM Parameters default value for this library will match the specified Job Description.
 
 -   **Call**: LSAIMPGET SAVFIL(\[\[SI.IBMEXI_SAVF\]\]) REPORT(1)
 

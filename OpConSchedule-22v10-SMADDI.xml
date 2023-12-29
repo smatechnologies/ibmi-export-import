@@ -34,7 +34,7 @@
                     <dtype>Working</dtype>
                     <aobn>O</aobn>
                     <frq_stc_estmethod>Calculated</frq_stc_estmethod>
-                    <frq_predicted_start>16:23</frq_predicted_start>
+                    <frq_predicted_start>15:51</frq_predicted_start>
                 </frq>
                 <jobdata>
                     <wuid>Use Service Account</wuid>
@@ -58,7 +58,7 @@
                     <dtype>Working</dtype>
                     <aobn>O</aobn>
                     <frq_stc_estmethod>Calculated</frq_stc_estmethod>
-                    <frq_predicted_start>16:23</frq_predicted_start>
+                    <frq_predicted_start>15:51</frq_predicted_start>
                 </frq>
                 <jobdata>
                     <job_type>Batch Job</job_type>
@@ -98,7 +98,7 @@
                     <dtype>Working</dtype>
                     <aobn>O</aobn>
                     <frq_stc_estmethod>Calculated</frq_stc_estmethod>
-                    <frq_predicted_start>16:24</frq_predicted_start>
+                    <frq_predicted_start>15:51</frq_predicted_start>
                 </frq>
                 <jobdata>
                     <job_type>Batch Job</job_type>
@@ -107,8 +107,8 @@
                     <job_date>*JOBD</job_date>
                     <curr_lib>*</curr_lib>
                     <init_lib>*JOBD</init_lib>
-                    <job_desc_name>*</job_desc_name>
-                    <job_desc_lib>*</job_desc_lib>
+                    <job_desc_name>SMALSAJ00</job_desc_name>
+                    <job_desc_lib>SMADTA</job_desc_lib>
                     <batchq_name>*</batchq_name>
                     <batchq_lib>*</batchq_lib>
                     <outputq_name>*JOBD</outputq_name>
@@ -138,7 +138,7 @@
                     <dtype>Working</dtype>
                     <aobn>O</aobn>
                     <frq_stc_estmethod>Calculated</frq_stc_estmethod>
-                    <frq_predicted_start>16:24</frq_predicted_start>
+                    <frq_predicted_start>15:51</frq_predicted_start>
                 </frq>
                 <jobdata>
                     <job_type>FTP</job_type>
@@ -147,8 +147,8 @@
                     <job_date>*JOBD</job_date>
                     <curr_lib>*</curr_lib>
                     <init_lib>*JOBD</init_lib>
-                    <job_desc_name>*</job_desc_name>
-                    <job_desc_lib>*</job_desc_lib>
+                    <job_desc_name>SMALSAJ00</job_desc_name>
+                    <job_desc_lib>SMADTA</job_desc_lib>
                     <batchq_name>*</batchq_name>
                     <batchq_lib>*</batchq_lib>
                     <outputq_name>*JOBD</outputq_name>
@@ -184,7 +184,7 @@
                     <dtype>Working</dtype>
                     <aobn>O</aobn>
                     <frq_stc_estmethod>Calculated</frq_stc_estmethod>
-                    <frq_predicted_start>15:24</frq_predicted_start>
+                    <frq_predicted_start>14:32</frq_predicted_start>
                 </frq>
                 <ppevt>
                     <ppefinst>Finished OK</ppefinst>
@@ -239,7 +239,7 @@
                     <dtype>Working</dtype>
                     <aobn>O</aobn>
                     <frq_stc_estmethod>Calculated</frq_stc_estmethod>
-                    <frq_predicted_start>15:24</frq_predicted_start>
+                    <frq_predicted_start>14:32</frq_predicted_start>
                 </frq>
                 <ppevt>
                     <ppefinst>Finished OK</ppefinst>
@@ -292,7 +292,7 @@
                     <dtype>Working</dtype>
                     <aobn>O</aobn>
                     <frq_stc_estmethod>Calculated</frq_stc_estmethod>
-                    <frq_predicted_start>16:34</frq_predicted_start>
+                    <frq_predicted_start>16:06</frq_predicted_start>
                 </frq>
                 <jobdata>
                     <job_type>Batch Job</job_type>
@@ -301,8 +301,8 @@
                     <job_date>*JOBD</job_date>
                     <curr_lib>*</curr_lib>
                     <init_lib>*JOBD</init_lib>
-                    <job_desc_name>*</job_desc_name>
-                    <job_desc_lib>*</job_desc_lib>
+                    <job_desc_name>SMALSAJ00</job_desc_name>
+                    <job_desc_lib>SMADTA</job_desc_lib>
                     <batchq_name>*</batchq_name>
                     <batchq_lib>*</batchq_lib>
                     <outputq_name>*JOBD</outputq_name>
