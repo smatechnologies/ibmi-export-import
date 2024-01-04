@@ -3,7 +3,9 @@
 
 **Document Version**
 
-This version from December, 2023, uses the Enterprise Manager (EM) user interface as the basis for describing most of the model automation, except for the Self Service app.  
+Version:  2024-01-04_a
+
+This version uses the Enterprise Manager (EM) user interface as the basis for describing most of the model automation, except for the Self Service app.  
 
 SMA may update this document to use the Solution Manager (SM) user interface examples as the SM full-featured version is released (estimated release data of EOY 2023 or early 2024).
 
@@ -36,6 +38,8 @@ SMA may update this document to use the Solution Manager (SM) user interface exa
 - IBMEXI_SAVF: [IBM Export/Import save file name](#ibmexi_savf)
 
 - IBMEXI_SRCMACH: [IBM LSAM Export/Import FTP Source Machine](#ibmexi_srcmach)
+
+[Source Machine Available Property](#source-machine---available-property)
 
 [Machine Group](#machine-group)
 
