@@ -357,6 +357,51 @@ To add a machine group:
 
 -   **Machine Assignment**: Select a production machine by clicking the machine in the Machine Assignment section Unassigned Machines.
 
+
+Source Machine - Available Property
+-----------------------------------
+
+Instead of using some form of access to Machine records in the OpCon database, the Fully Qualified Domain Name (FQDN) of the Source Machine will be stored as a user-defined Available Property, registered in the OpCon user interface Advanced Machine Properties.
+
+After this new Available Property which shall be called *"FQDN"* is registered, it can be referenced anywhere that OpCon Properties are used as a Machine Instance property:  **MI.FQDN**
+
+    NOTE:  MI. properties can be qualified using the Machine name, or using the [[$MACHINE NAME]] OpCon system property.  An example appears in the FTP job within these instructions.
+
+The FQDN of the Source Machine is preferred over the IP Address assigned to the Source Machine because the FQDN can be associated with a different IP address very quickly and easily during a disaster recovery process, thus avoiding any requirement to change OpCon job detailed parameters that might reference IP addresses.
+
+The Machine Instance of the FQDN assigned to the Source Machine is used by the FTP job that transfers an LSAM Export Save File to one or more target Machines.
+
+*Following instructions are based on the Enterprise Manager (EM) user interface.  Similar steps can also be performed from the Solution Manager (SM).*
+
+To add an Available Property to a Machine (SM: calls this an "Agent"):
+
+1. Select "Machines" from the EM Administration menu list.
+    - SM: From Library, under the Administration heading, select Agents. 
+    - Then find the Source Machine (Agent) for LSAM PTFs in the list.
+
+2. Before beginning maintenance to a Machine, change the Machine status to stopped.
+
+4. Click on the option to Open Advanced Settings Panel.
+    - SM: Use a right mouse click to open the Agent management window (titled "Agent Selection").  Click left mouse on the wrench icon that appears under the window title.
+
+5. Click on the Administrative Machine Information tab.
+    - SM: Click the arrow next to Administrative Machine Information.
+
+6. Click the green plus sign (+) next to Available Property.
+    - SM: Click the Manual Edit button.
+
+7. In the data entry box that appears, type the name of a new property, then an equals sign (=) and then the value string that should be assigned to this new Available Machine Property.  Click the Save button to store a new or updated value.
+    - SM: Click the blue pencil icon on the right to enter the update mode.  Type into the Name column the new Available Property name, then type into the Value column the string of data represented by the Property name.  Click the blue check box to save additions or changes.
+
+    ``` 
+    EXAMPLE:
+
+    To match this instruction, use the name "FQDN".  Type the actual Fully Qualified Domain Name of the Source Machine (Agent) that will contain the LSAM PTF save files needing distribution.
+
+        FQDN=SMADEV.GLOBALSMA.COM
+    ```
+
+
 OpCon Schedule: IBM LSAM Export from Test to Production
 -------------------------------------------------------
 
@@ -743,7 +788,7 @@ The FTP Transfer from Test to Production job transfers the save file from the Te
 
 **Call Information/Remote Information Tab**
 
--   Remote System: \[\[SI.IBMEXI_SRCMACH\]\]
+-   Remote System: \[\[MI.FQDN\[\[SI.IBMEXI_SRCMACH\]\]\]\]
 
 -   Remote File System: \*LCLFILNAM
 
