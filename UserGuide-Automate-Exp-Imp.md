@@ -39,9 +39,9 @@ SMA may update this document to use the Solution Manager (SM) user interface exa
 
 - IBMEXI_SRCMACH: [IBM LSAM Export/Import FTP Source Machine](#ibmexi_srcmach)
 
-[Source Machine Available Property](#source-machine---available-property)
-
 [Machine Group](#machine-group)
+
+[Source Machine Available Property](#source-machine---available-property)
 
 [OpCon IBM LSAM Export from Test to Production Schedules](#opcon-schedule-ibm-lsam-export-from-test-to-production)
 
