@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<smaddi>
+    <msg>
+        <msgtype>new_schedule</msgtype>
+        <skdinfo>
+            <skdname>IBM i LSAM Distribute LSAM PTFs</skdname>
+            <skdstart>00:00</skdstart>
+            <calusemaster>True</calusemaster>
+            <multi_inst_skd>True</multi_inst_skd>
+            <skdwkdays>7</skdwkdays>
+            <workday_sun>True</workday_sun>
+            <workday_mon>True</workday_mon>
+            <workday_tue>True</workday_tue>
+            <workday_wed>True</workday_wed>
+            <workday_thu>True</workday_thu>
+            <workday_fri>True</workday_fri>
+            <workday_sat>True</workday_sat>
+            <skd_bld4machgrp>TSTFQDNMG</skd_bld4machgrp>
+        </skdinfo>
+    </msg>
+    <msg>
+        <msgtype>new_master</msgtype>
+        <schedule>
+            <skdname>IBM i LSAM Distribute LSAM PTFs</skdname>
+            <job>
+                <jname>APPLY PTFS</jname>
+                <platform>IBM i</platform>
+                <use_skdinstmach>True</use_skdinstmach>
+                <multi_inst_job>True</multi_inst_job>
+                <frq>
+                    <frqname>Unisys-L4200</frqname>
+                    <stoff>00:00</stoff>
+                    <star>A</star>
+                    <bldst>Release</bldst>
+                    <fgrp>All Weeks</fgrp>
+                    <dow>YYYYYYY</dow>
+                    <dtype>Working</dtype>
+                    <aobn>O</aobn>
+                    <frq_stc_estmethod>Calculated</frq_stc_estmethod>
+                    <frq_predicted_start>14:15</frq_predicted_start>
+                </frq>
+                <jobdata>
+                    <job_type>Batch Job</job_type>
+                    <i5_userid>SYSSAV</i5_userid>
+                    <job_q_pri>*</job_q_pri>
+                    <job_date>*JOBD</job_date>
+                    <curr_lib>*</curr_lib>
+                    <init_lib>*JOBD</init_lib>
+                    <job_desc_name>SMALSAJ00</job_desc_name>
+                    <job_desc_lib>SMADTA</job_desc_lib>
+                    <batchq_name>*</batchq_name>
+                    <batchq_lib>*</batchq_lib>
+                    <outputq_name>*JOBD</outputq_name>
+                    <outputq_lib>*LIBL</outputq_lib>
+                    <log_lvl>*JOBD</log_lvl>
+                    <sev_lvl>*JOBD</sev_lvl>
+                    <txt_opt>*JOBD</txt_opt>
+                    <cl_log>*JOBD</cl_log>
+                    <inq_msg>*JOBD</inq_msg>
+                    <joblogs_keep_occur>0</joblogs_keep_occur>
+                    <joblogs_keep_days>0</joblogs_keep_days>
+                    <call_script>SMAPTFINS</call_script>
+                </jobdata>
+            </job>
+            <job>
+                <jname>Initialization Job</jname>
+                <platform>IBM i</platform>
+                <pmname>IBMILSAM9</pmname>
+                <frq>
+                    <frqname>Unisys-L4200</frqname>
+                    <stoff>00:00</stoff>
+                    <star>A</star>
+                    <bldst>Release</bldst>
+                    <fgrp>All Weeks</fgrp>
+                    <dow>YYYYYYY</dow>
+                    <dtype>Working</dtype>
+                    <aobn>O</aobn>
+                    <frq_stc_estmethod>Calculated</frq_stc_estmethod>
+                    <frq_predicted_start>13:40</frq_predicted_start>
+                </frq>
+                <ppevt>
+                    <ppefinst>Finished OK</ppefinst>
+                    <ppedets>$PROPERTY:ADD,SI.IBMLSAMPTF_FILEPATH,"/SMA/IBMiLSAMptf/21.1/"</ppedets>
+                </ppevt>
+                <ppevt>
+                    <ppefinst>Finished OK</ppefinst>
+                    <ppedets>$PROPERTY:ADD,SL.IBMLSAMPTF_SRCMACH,IBMILSAM9</ppedets>
+                </ppevt>
+                <jobdata>
+                    <job_type>Batch Job</job_type>
+                    <i5_userid>SYSSAV</i5_userid>
+                    <job_q_pri>*</job_q_pri>
+                    <job_date>*JOBD</job_date>
+                    <curr_lib>*</curr_lib>
+                    <init_lib>*JOBD</init_lib>
+                    <job_desc_name>SMALSAJ00</job_desc_name>
+                    <job_desc_lib>SMADTA9</job_desc_lib>
+                    <batchq_name>*JOBD</batchq_name>
+                    <batchq_lib>*LIBL</batchq_lib>
+                    <outputq_name>*JOBD</outputq_name>
+                    <outputq_lib>*LIBL</outputq_lib>
+                    <log_lvl>*JOBD</log_lvl>
+                    <sev_lvl>*JOBD</sev_lvl>
+                    <txt_opt>*JOBD</txt_opt>
+                    <cl_log>*JOBD</cl_log>
+                    <inq_msg>*JOBD</inq_msg>
+                    <joblogs_keep_occur>0</joblogs_keep_occur>
+                    <joblogs_keep_days>0</joblogs_keep_days>
+                    <call_script>SNDMSG MSG('SMA OpCon Agent automated LSAM PTF distribution reports start of schedule instance: "[[$SCHEDULE NAME]]"  for schedule date: [[$SCHEDULE DATE ISO]]') TOUSR(*SYSOPR)                                             </call_script>
+                </jobdata>
+            </job>
+            <job>
+                <jname>LSCTLDTA FTP Transfer from Test to Production</jname>
+                <platform>IBM i</platform>
+                <use_skdinstmach>True</use_skdinstmach>
+                <frq>
+                    <frqname>Unisys-L4200</frqname>
+                    <stoff>00:00</stoff>
+                    <star>A</star>
+                    <bldst>Release</bldst>
+                    <fgrp>All Weeks</fgrp>
+                    <dow>YYYYYYY</dow>
+                    <dtype>Working</dtype>
+                    <aobn>O</aobn>
+                    <frq_stc_estmethod>Calculated</frq_stc_estmethod>
+                    <frq_predicted_start>13:31</frq_predicted_start>
+                </frq>
+                <jobdata>
+                    <job_type>FTP</job_type>
+                    <i5_userid>SYSSAV</i5_userid>
+                    <job_q_pri>*</job_q_pri>
+                    <job_date>*JOBD</job_date>
+                    <curr_lib>*</curr_lib>
+                    <init_lib>*JOBD</init_lib>
+                    <job_desc_name>SMALSAJ00</job_desc_name>
+                    <job_desc_lib>SMADTA</job_desc_lib>
+                    <batchq_name>*</batchq_name>
+                    <batchq_lib>*</batchq_lib>
+                    <outputq_name>*JOBD</outputq_name>
+                    <outputq_lib>*LIBL</outputq_lib>
+                    <log_lvl>*JOBD</log_lvl>
+                    <sev_lvl>*JOBD</sev_lvl>
+                    <txt_opt>*JOBD</txt_opt>
+                    <cl_log>*JOBD</cl_log>
+                    <inq_msg>*JOBD</inq_msg>
+                    <joblogs_keep_occur>0</joblogs_keep_occur>
+                    <joblogs_keep_days>0</joblogs_keep_days>
+                    <ftp_remtsys>[[MI.FQDN.[[SI.IBMLSAMPTF_SRCMACH]]]]</ftp_remtsys>
+                    <ftp_act>GET</ftp_act>
+                    <ftp_tfr>BIN</ftp_tfr>
+                    <ftp_user>SYSSAV</ftp_user>
+                    <ftp_lclfn>LSCTLDTA</ftp_lclfn>
+                    <ftp_lcldir>[[SI.IBMLSAMPTF_FILEPATH]]</ftp_lcldir>
+                    <ftp_rmtfn>*LCLFILNAM</ftp_rmtfn>
+                    <ftp_rmtdir>[[SI.IBMLSAMPTF_FILEPATH]]</ftp_rmtdir>
+                </jobdata>
+            </job>
+            <job>
+                <jname>LSCUMPTF FTP Transfer from Test to Production</jname>
+                <platform>IBM i</platform>
+                <use_skdinstmach>True</use_skdinstmach>
+                <frq>
+                    <frqname>Unisys-L4200</frqname>
+                    <stoff>00:00</stoff>
+                    <star>A</star>
+                    <bldst>Release</bldst>
+                    <fgrp>All Weeks</fgrp>
+                    <dow>YYYYYYY</dow>
+                    <dtype>Working</dtype>
+                    <aobn>O</aobn>
+                    <frq_stc_estmethod>Calculated</frq_stc_estmethod>
+                    <frq_predicted_start>13:31</frq_predicted_start>
+                </frq>
+                <jobdata>
+                    <job_type>FTP</job_type>
+                    <i5_userid>SYSSAV</i5_userid>
+                    <job_q_pri>*</job_q_pri>
+                    <job_date>*JOBD</job_date>
+                    <curr_lib>*</curr_lib>
+                    <init_lib>*JOBD</init_lib>
+                    <job_desc_name>SMALSAJ00</job_desc_name>
+                    <job_desc_lib>SMADTA</job_desc_lib>
+                    <batchq_name>*</batchq_name>
+                    <batchq_lib>*</batchq_lib>
+                    <outputq_name>*JOBD</outputq_name>
+                    <outputq_lib>*LIBL</outputq_lib>
+                    <log_lvl>*JOBD</log_lvl>
+                    <sev_lvl>*JOBD</sev_lvl>
+                    <txt_opt>*JOBD</txt_opt>
+                    <cl_log>*JOBD</cl_log>
+                    <inq_msg>*JOBD</inq_msg>
+                    <joblogs_keep_occur>0</joblogs_keep_occur>
+                    <joblogs_keep_days>0</joblogs_keep_days>
+                    <ftp_remtsys>[[MI.FQDN.[[SI.IBMLSAMPTF_SRCMACH]]]]</ftp_remtsys>
+                    <ftp_act>GET</ftp_act>
+                    <ftp_tfr>BIN</ftp_tfr>
+                    <ftp_user>SYSSAV</ftp_user>
+                    <ftp_lclfn>LSCUMPTF</ftp_lclfn>
+                    <ftp_lcldir>[[SI.IBMLSAMPTF_FILEPATH]]</ftp_lcldir>
+                    <ftp_rmtfn>*LCLFILNAM</ftp_rmtfn>
+                    <ftp_rmtdir>[[SI.IBMLSAMPTF_FILEPATH]]</ftp_rmtdir>
+                </jobdata>
+            </job>
+        </schedule>
+    </msg>
+    <msg>
+        <msgtype>add_dependency</msgtype>
+        <schedule>
+            <skdname>IBM i LSAM Distribute LSAM PTFs</skdname>
+            <job>
+                <jname>APPLY PTFS</jname>
+                <jpre>
+                    <dskdname>IBM i LSAM Distribute LSAM PTFs</dskdname>
+                    <djname>LSCTLDTA FTP Transfer from Test to Production</djname>
+                    <dptype>Requires</dptype>
+                    <iexit>N</iexit>
+                    <onfailure>N</onfailure>
+                </jpre>
+            </job>
+        </schedule>
+    </msg>
+    <msg>
+        <msgtype>add_dependency</msgtype>
+        <schedule>
+            <skdname>IBM i LSAM Distribute LSAM PTFs</skdname>
+            <job>
+                <jname>APPLY PTFS</jname>
+                <jpre>
+                    <dskdname>IBM i LSAM Distribute LSAM PTFs</dskdname>
+                    <djname>LSCUMPTF FTP Transfer from Test to Production</djname>
+                    <dptype>Requires</dptype>
+                    <iexit>N</iexit>
+                    <onfailure>N</onfailure>
+                </jpre>
+            </job>
+        </schedule>
+    </msg>
+    <msg>
+        <msgtype>add_dependency</msgtype>
+        <schedule>
+            <skdname>IBM i LSAM Distribute LSAM PTFs</skdname>
+            <job>
+                <jname>LSCTLDTA FTP Transfer from Test to Production</jname>
+                <jpre>
+                    <dskdname>IBM i LSAM Distribute LSAM PTFs</dskdname>
+                    <djname>Initialization Job</djname>
+                    <dptype>Requires</dptype>
+                    <iexit>N</iexit>
+                    <onfailure>N</onfailure>
+                </jpre>
+            </job>
+        </schedule>
+    </msg>
+    <msg>
+        <msgtype>add_dependency</msgtype>
+        <schedule>
+            <skdname>IBM i LSAM Distribute LSAM PTFs</skdname>
+            <job>
+                <jname>LSCUMPTF FTP Transfer from Test to Production</jname>
+                <jpre>
+                    <dskdname>IBM i LSAM Distribute LSAM PTFs</dskdname>
+                    <djname>Initialization Job</djname>
+                    <dptype>Requires</dptype>
+                    <iexit>N</iexit>
+                    <onfailure>N</onfailure>
+                </jpre>
+            </job>
+        </schedule>
+    </msg>
+    <msg>
+        <msgtype>add_documentation</msgtype>
+        <schedule>
+            <skdname>IBM i LSAM Distribute LSAM PTFs</skdname>
+            <job>
+                <documentation>
+                    <doc>This a schedule is based on a having a single master (or source) IBM i LSAM where the LSAM PTF save files (LSCTLDTA, LSCUMPTF) are stored as they are retrieved from the SMA FILES directory for any given, supported LSAM Version.  An instance of the Schedule is instantiated for each IBM i LSAM in a Machine Group.</doc>
+                </documentation>
+            </job>
+        </schedule>
+    </msg>
+    <msg>
+        <msgtype>add_documentation</msgtype>
+        <schedule>
+            <skdname>IBM i LSAM Distribute LSAM PTFs</skdname>
+            <job>
+                <jname>APPLY PTFS</jname>
+                <documentation>
+                    <doc>Find and preprocess the import savf.</doc>
+                </documentation>
+            </job>
+        </schedule>
+    </msg>
+</smaddi>

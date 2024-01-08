@@ -167,6 +167,8 @@ can be performed. The automation tools that must be configured include:
 
 -   OpCon Machine Groups
 
+-   Source Machine - Available Property
+
 -   OpCon Schedule
 
 -   OpCon Jobs
@@ -187,9 +189,11 @@ Configuration Requirements
 
 3.  OpCon Machine Groups -- machine groups are used to control one to many production machines as targets for FTP and Import processing.
 
-4.  OpCon Schedule -- the OpCon schedule is a single schedule required to contain all 7 jobs for Export, FTP and Import to the production machine(s).
+4.  Source Machine - Available Property -- adding a user-defined property to the Source Machine record creates a convenient method for retrieving its Fully Qualified Domain Name (FQDN).  From this unique storage location the FQDN can be referenced as a Machine Instance variable (e.g., MI.FQDN,<machine name>).
 
-5.  OpCon Jobs -- 7 jobs in the schedule are used to:   
+5.  OpCon Schedule -- the OpCon schedule is a single schedule required to contain all 7 jobs for Export, FTP and Import to the production machine(s).
+
+6.  OpCon Jobs -- 7 jobs in the schedule are used to:   
     - Initialize variables
     - LSAM Export to a save file
     - Retrieve the Save File name
@@ -198,7 +202,7 @@ Configuration Requirements
     - FTP save file to the target machine(s) in the machine group and LSAM Import save file on each machine(s) in the machine group.
     - Import the batch to each designated LSAM in the Machine Group.
 
-6.  Self Service Button -- the Solution Manager Self Service web application is the location to enter the LSAM Batch Name to be processed by the schedule. The button will submit to the OpCon server a \$SCHEDULE:ADD external event command to create the new schedule for processing.
+7.  Self Service Button -- the Solution Manager Self Service web application is the location to enter the LSAM Batch Name to be processed by the schedule. The button will submit to the OpCon server a \$SCHEDULE:ADD external event command to create the new schedule for processing.
 
 Exported Information
 ====================
@@ -313,7 +317,7 @@ To add a global property:
 
 -   Documentation Text Box: IBM LSAM Export/Import SAVF name (20)
 
--   Value Text Box: Value will be initialized during the Initialization Null Job
+-   Value Text Box: *This value will be initialized during the Initialization Job*
 
 #### IBMEXI_SRCMACH
 
@@ -385,16 +389,16 @@ To add an Available Property to a Machine (SM: calls this an "Agent"):
 
 2. Before beginning maintenance to a Machine, change the Machine status to stopped.
 
-4. Click on the option to Open Advanced Settings Panel.
+3. Click on the option to Open Advanced Settings Panel.
     - SM: Use a right mouse click to open the Agent management window (titled "Agent Selection").  Click left mouse on the wrench icon that appears under the window title.
 
-5. Click on the Administrative Machine Information tab.
+4. Click on the Administrative Machine Information tab.
     - SM: Click the arrow next to Administrative Machine Information.
 
-6. Click the green plus sign (+) next to Available Property.
-    - SM: Click the Manual Edit button.
+5. Click the green plus sign (+) next to Available Property.
+    - SM: To being adding a new Property, click the plus sign (+) in the bar just below the Name / Value table of entries.  Click the Manual Edit button to update an existing Property.
 
-7. In the data entry box that appears, type the name of a new property, then an equals sign (=) and then the value string that should be assigned to this new Available Machine Property.  Click the Save button to store a new or updated value.
+6. In the data entry box that appears, type the name of a new property, then an equals sign (=) and then the value string that should be assigned to this new Available Machine Property.  Click the Save button to store a new or updated value.
     - SM: Click the blue pencil icon on the right to enter the update mode.  Type into the Name column the new Available Property name, then type into the Value column the string of data represented by the Property name.  Click the blue check box to save additions or changes.
 
     ``` 
@@ -403,6 +407,8 @@ To add an Available Property to a Machine (SM: calls this an "Agent"):
     To match this instruction, use the name "FQDN".  Type the actual Fully Qualified Domain Name of the Source Machine (Agent) that will contain the LSAM PTF save files needing distribution.
 
         FQDN=SMADEV.GLOBALSMA.COM
+
+    Note: Do not enclose the Value string within quotes.  If quotes are typed, they will become part of the Value string.
     ```
 
 
@@ -426,7 +432,7 @@ To add a master schedule:
 #### Field Values:
 -   **Name Text Box**: IBM LSAM Export from Test to Production
 
--   **Documentation Text Box**: This a schedule is designed to be run from Self Service. It requires the LSAM export Batch Name in an OpCon Global Property.
+-   **Documentation Text Box**: This schedule is designed to be run from Self Service. It requires the LSAM export Batch Name in an OpCon Global Property.
 
 -   **Workdays per Week**: click all days
 
@@ -435,12 +441,13 @@ Configure OpCon Jobs
 
 To add a job:
 
-1.  Double-click on Job Master under the Administration topic. The Job
-    Master screen displays.
+1.  Double-click on Job Master under the Administration topic. The Job Master screen displays.
 
-2.  Click Add on the Job Master toolbar.
+2.  Select the appropriate Schedule Master in the top line. 
 
-3.  Type a job name in the Name textbox.
+3.  Click Add on the Job Master toolbar.
+
+4.  Type a job name in the Name textbox.
 
 
 ### Initialization Job
@@ -449,7 +456,7 @@ The Initialization Job initializes any global property values from the previous 
 
 **Selection**
 
--   **Name Text Box**: Initilization Job
+-   **Name Text Box**: Initialization Job
 
 ****Job Properties/Job Details Tab**
 
@@ -720,7 +727,7 @@ The CRTIMPSAVF - Create save file on Production Machines job creates an empty sa
 
 -   **Job Description Name**: SMALSAJ00
     - An alternative job description can be used as long as the four LSAM libraries are included in the initial library list.
-    - To enable a user-selected Job Description, select asterisk (\*) which refers to the LSAM Default Paramters.  The actual Job Description name can be set in each/any target Machine by using the LSAM Parameters maintenance function which is option 7 on the main LSAM menu.
+    - To enable a user-selected Job Description, select asterisk (\*) which refers to the LSAM Default Parameters.  The actual Job Description name can be set in each/any target Machine by using the LSAM Parameters maintenance function which is option 7 on the main LSAM menu.
 
 -   **Job Description Library**: SMADTA
     - An alternative library can be named, depending on where the Job Description object is stored.
@@ -766,7 +773,7 @@ The FTP Transfer from Test to Production job transfers the save file from the Te
 
 -   **Job Description Name**: SMALSAJ00
     - An alternative job description can be used as long as the four LSAM libraries are included in the initial library list.
-    - To enable a user-selected Job Description, select asterisk (\*) which refers to the LSAM Default Paramters.  The actual Job Description name can be set in each/any target Machine by using the LSAM Parameters maintenance function which is option 7 on the main LSAM menu.
+    - To enable a user-selected Job Description, select asterisk (\*) which refers to the LSAM Default Parameters.  The actual Job Description name can be set in each/any target Machine by using the LSAM Parameters maintenance function which is option 7 on the main LSAM menu.
 
 -   **Job Description Library**: SMADTA
     - An alternative library can be named, depending on where the Job Description object is stored.
@@ -837,13 +844,13 @@ The LSA_IMPGET job executes the IBM i LSAM command LSAIMPGET to import the save 
 
 **IBM i Definition/Job Information Tab**
 
--   **Job Type*8: Select Batch Job from the drop-down.
+-   **Job Type**: Select Batch Job from the drop-down.
 
 -   **User ID**: Select your configured User ID from the drop-down selection.
 
 -   **Job Description Name**: SMALSAJ00
     - An alternative job description can be used as long as the four LSAM libraries are included in the initial library list.
-    - To enable a user-selected Job Description, select asterisk (\*) which refers to the LSAM Default Paramters.  The actual Job Description name can be set in each/any target Machine by using the LSAM Parameters maintenance function which is option 7 on the main LSAM menu.
+    - To enable a user-selected Job Description, select asterisk (\*) which refers to the LSAM Default Parameters.  The actual Job Description name can be set in each/any target Machine by using the LSAM Parameters maintenance function which is option 7 on the main LSAM menu.
 
 -   **Job Description Library**: SMADTA
     - An alternative library can be named, depending on where the Job Description object is stored.
