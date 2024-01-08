@@ -1,11 +1,16 @@
 # IBMi Export-Import 
 The OpCon IBM i Agent Data Export/Import process enables the client to define an automatic process that exports LSAM master records groups from a test machine, then transfers them to one or many production machines based on the configuration of the OpCon Machine Group, and finally imports them on each machine using the LSAM Import process.
 
+# IBM LSAM PTF Distribution from Test to Production
+Similar to the LSAM automation rules data distribution process, above, the IBM LSAM PTF Distribution process enables the client to define an automatic process that exports LSAM PTFs (software patches - NOT the same as the IBM i OS PTFs) that were downloaded to a Test (or Source) partition from the SMA FTP server to be automatically transfered to one or many Production machines based on the configuration of an OpCon Machine Group.  The procedure finishes by executing the existing single command SMAPTFINS on each machine using the LSAM Import process.
+
 # Prerequisites
 * OpCon IBM i Agent 21.1
 
 # Instructions
-Please refer to [this](UserGuide-Automate-Exp-Imp.md) for detailed instructions.
+Please refer to [this](UserGuide-Automate-Exp-Imp.md) for detailed instructions about the LSAM Data Export-Import procedure.
+
+Please refer to [this](UserGuide-Automate-LSAM-PTF.md) for detailed instructions about the LSAM PTF Distribution procedure.
 
 # Disclaimer
 No Support and No Warranty are provided by SMA Technologies for this project and related material. The use of this project's files is on your own risk.
