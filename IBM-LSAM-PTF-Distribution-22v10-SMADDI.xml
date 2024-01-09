@@ -41,7 +41,7 @@
                 </frq>
                 <jobdata>
                     <job_type>Batch Job</job_type>
-                    <i5_userid>SYSSAV</i5_userid>
+                    <i5_userid>OPCON</i5_userid>
                     <job_q_pri>*</job_q_pri>
                     <job_date>*JOBD</job_date>
                     <curr_lib>*</curr_lib>
@@ -80,11 +80,11 @@
                 </frq>
                 <ppevt>
                     <ppefinst>Finished OK</ppefinst>
-                    <ppedets>$PROPERTY:ADD,SI.IBMLSAMPTF_FILEPATH,"/SMA/IBMiLSAMptf/21.1/"</ppedets>
+                    <ppedets>$PROPERTY:ADD,SI.IBMLSAMPTF_FILEPATH,/SMA/IBMiLSAMptf/21.1/</ppedets>
                 </ppevt>
                 <ppevt>
                     <ppefinst>Finished OK</ppefinst>
-                    <ppedets>$PROPERTY:ADD,SL.IBMLSAMPTF_SRCMACH,IBMILSAM9</ppedets>
+                    <ppedets>$PROPERTY:ADD,SI.IBMLSAMPTF_SRCMACH,IBMILSAM</ppedets>
                 </ppevt>
                 <jobdata>
                     <job_type>Batch Job</job_type>

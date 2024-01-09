@@ -3,7 +3,7 @@
 
 **Document Version**
 
-Version:  2024-01-04
+Version:  2024-01-09
 
 This version uses the Enterprise Manager (EM) user interface as the basis for describing the model automation. 
 
@@ -34,9 +34,15 @@ This version uses the Enterprise Manager (EM) user interface as the basis for de
 
 - [Initialization Job](#initialization-job)
 
-- [FTP Transfer from Test to Production](#ftp-transfer-from-test-to-production)
+- [LSCTLDTA FTP Transfer from Test to Production](#lsctldta-ftp-transfer-from-test-to-production)
 
-- [LSA_IMPGET - IBM IMP GETSAVF](#lsa_impget---ibm-imp-getsavf)
+- [LSCUMPTF FTP Transfer from Test to Production](#lscumptf-ftp-transfer-from-test-to-production)
+
+- [APPLY PTFS](#apply-ptfs)
+
+    - [APPLY PTFS User ID NOTE](#job-user-id-note)
+
+- [Self Service Web Application (optional)](#self-service-web-app)
 
 ### [Appendix](#appendix-1)
 
@@ -103,6 +109,8 @@ The instructions in this document include a list of prerequisites that must be c
 -   OpCon Schedule
 
 -   OpCon Jobs
+
+    - IBM i User Profile with *SECADM authority
 
 -   Self Service Button (optional)
 
@@ -473,7 +481,12 @@ To configure the LSCUMPTF FTP Transfer job, it is possible to copy from the LSCT
 
 ### APPLY PTFS
 
-The APPLY PTFS job executes the IBM i LSAM command LSAIMPGET to import the save file into the target machine.
+The APPLY PTFS job executes the IBM i LSAM command SMAPTFINS to install the latest LSAM PTFs into the target machine's LSAM software environment.
+
+#### Job User ID NOTE
+As documented in the IBM i Agent User Help, the installation of the IBM i LSAM PTFs requires a user profile with the same broad authorities as the QSECOFR user profile.  The model schedule XML data file included in this project's directory under the SMA Innovations Lab names the user profile "OPCON" for this purpose, rather than naming the QSECOFR user profile itself.  It is up to the site to configure and manage access to such a powerful user profile, but this requirement cannot be overcome because of the unique built-in authority strategies of many LSAM automation tools.
+
+The appropriate User ID must be registered in the OpCon database before attempting to import the model schedule using the OpCon SMADDI direct database input tool.  It does not have to exist in the IBM i partition during the SMADDI import process, but a matching user profile name with the required authority must be created in the IBM i partition before this "APPLY PTF" job can be successfully executed.
 
 **Selection**
 
@@ -489,7 +502,7 @@ The APPLY PTFS job executes the IBM i LSAM command LSAIMPGET to import the save 
 
 -   **Job Type**: Select Batch Job from the drop-down.
 
--   **User ID**: Select your configured User ID from the drop-down selection.
+-   **User ID**: Select your configured User ID from the drop-down selection.  See the *Job User ID NOTE* above.
 
 -   **Job Description Name**: SMALSAJ00
     - An alternative job description can be used as long as the four LSAM libraries are included in the initial library list.
@@ -521,6 +534,14 @@ Click the Add Frequency button to add a frequency configured like below:
 
 -   **Options**: Select *Finished OK* from the options drop-down selection for each dependency.
 
+
+### Self Service Web App
+
+**OPTIONAL**
+
+A Self-Service web application, supported by the Solution Manager user interface of OpCon, is not required for managing this schedule of jobs.  However, if a site desires to use this method to manually build and initiate execution of the LSAM PTF Distribution schedule, then an example of the steps for building a Self Service web applicaxtion may be found in the [IBM LSAM Data Export-Import](UserGuide-Automate-Exp-Imp.md) instruction document.
+
+**NOTE**: A Self-Service web application for this IBM LSAM PTF Distribution schedule does not require a schedule instance input parameter, although a site may decide to manage one or more parameters of this schedule's jobs by using that technique.
 
 Appendix
 ========
